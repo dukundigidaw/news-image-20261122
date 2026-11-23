@@ -1,0 +1,197 @@
+<!-- FRAGMENT: bento/comic front page, 1024x1024, 9 rows (masthead / COP31 strip / 5 image-led / 6x8 panels). For the Hyperframes render, wrap in a full HTML document (<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{margin:0}</style></head><body> ...fragment... </body></html>) and screenshot at 1024x1024. All sizing in cqw so it scales with the wrapper width. -->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .wrap { container-type: inline-size; width: 100%; max-width: 1024px; margin: 0 auto; }
+  .page {
+    width: 100%; aspect-ratio: 1 / 1; background: #faf7f0; color: #141414;
+    padding: 0.9cqw; display: grid; gap: 0.5cqw;
+    grid-template-rows: 8fr 6fr 16fr 11fr 11fr 11fr 11fr 11fr 11fr;
+    font-family: "DejaVu Sans", "Noto Sans", system-ui, sans-serif;
+  }
+  .row { display: grid; gap: 0.5cqw; min-height: 0; }
+  .row1 { grid-template-columns: 1fr 1fr 1.4fr 1fr 1fr; }
+  .strip-row { grid-template-columns: 1fr; }
+  .row2 { grid-template-columns: repeat(5, 1fr); }
+  .row358 { grid-template-columns: repeat(8, 1fr); }
+  .panel {
+    background: #ffffff; border: 0.22cqw solid #141414; border-radius: 0.7cqw;
+    padding: 0.7cqw 1cqw; overflow: hidden; min-width: 0; min-height: 0;
+    display: flex; flex-direction: column;
+  }
+  .span2 { grid-column: span 2; }
+  .kicker {
+    color: #a31621; font-weight: 700; letter-spacing: 0.18em;
+    font-size: 0.85cqw; line-height: 1.3; text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.5cqw; flex: none;
+  }
+  .kicker::before { content: ""; width: 0.7cqw; height: 0.7cqw; background: #a31621; flex: none; }
+  .hed {
+    font-family: Georgia, "P052", "DejaVu Serif", serif; font-weight: 700;
+    line-height: 1.12; overflow: hidden;
+  }
+  .dek { line-height: 1.3; overflow: hidden; color: #333333; }
+  /* row 1 */
+  .row1 .panel { justify-content: center; }
+  .row1 .hed { font-size: 1.4cqw; margin-top: 0.35cqw; }
+  .row1 .dek { font-size: 1cqw; margin-top: 0.3cqw; }
+  .headline-panel { background: #141414; color: #faf7f0; align-items: center; text-align: center; justify-content: center; }
+  .headline-panel .brand { font-size: 0.85cqw; letter-spacing: 0.5em; font-weight: 700; color: #faf7f0; }
+  .headline-panel .dateline {
+    font-family: Georgia, "P052", "DejaVu Serif", serif; font-weight: 700;
+    font-size: 1.7cqw; line-height: 1.1; margin-top: 0.3cqw;
+  }
+  /* COP31 strip : full width, inverted */
+  .strip { background: #141414; color: #faf7f0; flex-direction: row; align-items: center; gap: 1.5cqw; padding: 0.7cqw 1.2cqw; }
+  .strip .kicker { color: #e8e4da; }
+  .strip .hed { font-size: 1.9cqw; color: #faf7f0; margin-top: 0.3cqw; white-space: nowrap; }
+  .strip-dek { color: #cfccc4; font-size: 1.05cqw; line-height: 1.35; border-left: 0.15cqw solid #4a4a4a; padding-left: 1.5cqw; flex: 1; }
+  /* row 2 : image-led */
+  .art { flex: none; height: 6cqw; display: flex; align-items: center; justify-content: center; }
+  .art svg { width: 100%; height: 100%; }
+  .row2 .kicker { margin-top: 0.4cqw; }
+  .row2 .hed { font-size: 1.4cqw; margin-top: 0.3cqw; }
+  .row2 .dek { font-size: 1cqw; margin-top: 0.25cqw; }
+  /* rows 3-8 : 8 narrow comic panels */
+  .row358 .panel { justify-content: space-between; padding: 0.6cqw 0.8cqw; }
+  .row358 .kicker { font-size: 0.85cqw; }
+  .row358 .hed { font-size: 1.35cqw; margin-top: 0.35cqw; }
+  .row358 .dek { font-size: 1cqw; margin-top: 0.3cqw; }
+</style>
+<div class="wrap"><div class="page">
+
+  <!-- ROW 1 : [news x2] [HEADLINE] [news x2] -->
+  <div class="row row1">
+    <div class="panel span2">
+      <div class="kicker">War</div>
+      <div class="hed">Drones strike Russian warship off Libya</div>
+      <div class="dek">Ukrainian sea drones hit the Merkury at Benghazi.</div>
+    </div>
+    <div class="panel headline-panel">
+      <div class="brand">ONE DAY</div>
+      <div class="dateline">SUNDAY, 22<br>NOVEMBER 2026</div>
+    </div>
+    <div class="panel span2">
+      <div class="kicker">Justice</div>
+      <div class="hed">Court: Myanmar committed genocide</div>
+      <div class="dek">The International Court of Justice rules against Myanmar over the Rohingya.</div>
+    </div>
+  </div>
+
+  <!-- COP31 STRIP : full width -->
+  <div class="row strip-row">
+    <div class="panel strip">
+      <div>
+        <div class="kicker">Climate</div>
+        <div class="hed">COP31 collapses: no deal in Antalya</div>
+      </div>
+      <div class="strip-dek">Nearly 200 nations split over fossil fuels in the longest COP ever — the biggest setback since 2009.</div>
+    </div>
+  </div>
+
+  <!-- ROW 2 : 5 image-led panels -->
+  <div class="row row2">
+    <div class="panel">
+      <div class="art"><svg viewBox="0 0 120 80" fill="none" stroke="#141414" stroke-width="3" stroke-linejoin="round"><path d="M10 50 L110 50 L100 68 L20 68 Z" fill="#141414" stroke="none"/><rect x="20" y="32" width="20" height="18"/><rect x="45" y="32" width="20" height="18"/><rect x="70" y="32" width="14" height="18"/><rect x="92" y="24" width="12" height="26" fill="#a31621" stroke="none"/><path d="M8 74 H112" stroke-width="2"/><path d="M22 78 H98" stroke-width="2"/></svg></div>
+      <div class="kicker">Gulf</div>
+      <div class="hed">Tankers struck near Hormuz</div>
+      <div class="dek">Bahrain: Iranian attack on Sitra; 2 injured.</div>
+    </div>
+    <div class="panel">
+      <div class="art"><svg viewBox="0 0 100 100"><path d="M50 8 C58 24 74 32 74 56 A24 24 0 1 1 26 56 C26 46 34 42 37 32 C41 40 47 42 47 42 C44 32 44 20 50 8 Z" fill="#a31621"/><path d="M50 46 C54 54 60 57 60 67 A10 10 0 1 1 40 67 C40 61 44 58 46 53 C48 57 50 58 50 58 C49 54 49 50 50 46 Z" fill="#faf7f0"/></svg></div>
+      <div class="kicker">West Bank</div>
+      <div class="hed">Settlers torch 12 vehicles</div>
+      <div class="dek">Four villages near Ramallah hit.</div>
+    </div>
+    <div class="panel">
+      <div class="art"><svg viewBox="0 0 120 80" fill="none" stroke="#141414" stroke-width="3" stroke-linecap="round"><path d="M10 55 H110" stroke-width="4"/><path d="M15 55 Q60 8 105 55"/><path d="M35 55 V38 M85 55 V38"/><path d="M60 55 V38" stroke="#a31621"/><path d="M60 38 L74 43 L60 48 Z" fill="#a31621" stroke="none"/><path d="M10 68 H110 M25 74 H95" stroke-width="2"/></svg></div>
+      <div class="kicker">Europe</div>
+      <div class="hed">UK and EU strike Brexit deal</div>
+      <div class="dek">Trade and travel pact rebuilds ties.</div>
+    </div>
+    <div class="panel">
+      <div class="art"><svg viewBox="0 0 120 80" fill="none" stroke="#141414" stroke-width="3"><circle cx="60" cy="42" r="22"/><circle cx="52" cy="36" r="3" fill="#141414" stroke="none"/><circle cx="68" cy="48" r="2.5" fill="#141414" stroke="none"/><circle cx="62" cy="32" r="2" fill="#141414" stroke="none"/><ellipse cx="60" cy="42" rx="52" ry="16" stroke-width="2"/><g transform="translate(96 26)"><rect x="-4" y="-3" width="9" height="7" fill="#a31621" stroke="none"/><path d="M-14 0 H-4 M5 0 H15" stroke-width="2"/></g></svg></div>
+      <div class="kicker">Space</div>
+      <div class="hed">BepiColombo reaches Mercury</div>
+      <div class="dek">Enters orbit after eight years.</div>
+    </div>
+    <div class="panel">
+      <div class="art"><svg viewBox="0 0 120 80" fill="none" stroke="#141414" stroke-width="3" stroke-linejoin="round"><path d="M15 40 L30 26 L45 40 L60 26 L75 40"/><rect x="15" y="40" width="60" height="28"/><rect x="88" y="22" width="12" height="46"/><circle cx="94" cy="16" r="4" fill="#141414" stroke="none" opacity="0.85"/><circle cx="94" cy="9" r="3" fill="#141414" stroke="none" opacity="0.55"/><rect x="33" y="54" width="12" height="14" fill="#a31621" stroke="none"/><rect x="55" y="50" width="10" height="8"/></svg></div>
+      <div class="kicker">Disaster</div>
+      <div class="hed">Factory fire: 34 missing</div>
+      <div class="dek">Indonesian candy factory blaze.</div>
+    </div>
+  </div>
+
+  <!-- ROW 3 : 8 panels -->
+  <div class="row row358">
+    <div class="panel"><div><div class="kicker">War</div><div class="hed">Missiles hit Kyiv flats</div></div><div class="dek">Russian attack kills 3.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">Delta outage grounds jets</div></div><div class="dek">All flights delayed.</div></div>
+    <div class="panel"><div><div class="kicker">Mexico</div><div class="hed">Cartel leader captured</div></div><div class="dek">11 dead in firefight.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">Democrats' biggest win since '92</div></div><div class="dek">N. Carolina flip seals it.</div></div>
+    <div class="panel"><div><div class="kicker">Thailand</div><div class="hed">Thai court upholds verdict</div></div><div class="dek">MP's term cut to 3 years.</div></div>
+    <div class="panel"><div><div class="kicker">Poland</div><div class="hed">Poland: Russia targeted rapper</div></div><div class="dek">Two alleged plots.</div></div>
+    <div class="panel"><div><div class="kicker">Obituary</div><div class="hed">Paolo Bulgari dies at 89</div></div><div class="dek">Luxury empire builder.</div></div>
+    <div class="panel"><div><div class="kicker">Nigeria</div><div class="hed">Boat capsizes, 24 dead</div></div><div class="dek">Funeral trip turns tragic.</div></div>
+  </div>
+
+  <!-- ROW 4 : 8 panels -->
+  <div class="row row358">
+    <div class="panel"><div><div class="kicker">Poland</div><div class="hed">Russian missiles hit Poland</div></div><div class="dek">NATO calls it a violation.</div></div>
+    <div class="panel"><div><div class="kicker">Ukraine</div><div class="hed">Missile hits Zelenskyy's home</div></div><div class="dek">2 killed, scores wounded.</div></div>
+    <div class="panel"><div><div class="kicker">Italy</div><div class="hed">Ex-police chief found dead</div></div><div class="dek">Meloni shocked.</div></div>
+    <div class="panel"><div><div class="kicker">Obituary</div><div class="hed">Mlambo-Ngcuka dies at 71</div></div><div class="dek">Ex-deputy president.</div></div>
+    <div class="panel"><div><div class="kicker">Nepal</div><div class="hed">Nepal PM visits India</div></div><div class="dek">Two-day state visit.</div></div>
+    <div class="panel"><div><div class="kicker">India</div><div class="hed">Dutch FM lands in Delhi</div></div><div class="dek">Ministers' talks open.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">ICE drags 2 off flight</div></div><div class="dek">Seattle jet-bridge arrests.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">FBI: Goldy Brar most wanted</div></div><div class="dek">New poster released.</div></div>
+  </div>
+
+  <!-- ROW 5 : 8 panels -->
+  <div class="row row358">
+    <div class="panel"><div><div class="kicker">Pakistan</div><div class="hed">Pakistan halts gold mining</div></div><div class="dek">Terror-funding claims.</div></div>
+    <div class="panel"><div><div class="kicker">Sport</div><div class="hed">Liverpool rout Man Utd</div></div><div class="dek">Ngumoha shines.</div></div>
+    <div class="panel"><div><div class="kicker">Sport</div><div class="hed">Inter Miami fall</div></div><div class="dek">Columbus end Cup defence.</div></div>
+    <div class="panel"><div><div class="kicker">Sport</div><div class="hed">Bills make history</div></div><div class="dek">Buffalo beat Miami.</div></div>
+    <div class="panel"><div><div class="kicker">Sport</div><div class="hed">NWSL final day</div></div><div class="dek">Spirit v Current.</div></div>
+    <div class="panel"><div><div class="kicker">Sport</div><div class="hed">Barcelona host Villarreal</div></div><div class="dek">La Liga, matchday 13.</div></div>
+    <div class="panel"><div><div class="kicker">Tech</div><div class="hed">Nvidia pressed on China</div></div><div class="dek">US probes AI chip sales.</div></div>
+    <div class="panel"><div><div class="kicker">Obituary</div><div class="hed">Molly Meldrum dies at 83</div></div><div class="dek">Australian music legend.</div></div>
+  </div>
+
+  <!-- ROW 6 : 8 panels -->
+  <div class="row row358">
+    <div class="panel"><div><div class="kicker">Tech</div><div class="hed">China's chipmakers surge</div></div><div class="dek">CXMT, YMTC gain ground.</div></div>
+    <div class="panel"><div><div class="kicker">Tech</div><div class="hed">China chased AI chips</div></div><div class="dek">NYT: covert export dodge.</div></div>
+    <div class="panel"><div><div class="kicker">China</div><div class="hed">China eases margin rules</div></div><div class="dek">Ratio drops to 80%.</div></div>
+    <div class="panel"><div><div class="kicker">Taiwan</div><div class="hed">Taiwan warns Canada</div></div><div class="dek">China ties carry risk.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">FBI probes database hack</div></div><div class="dek">Crime records breached.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">Trump floats rate cap</div></div><div class="dek">10% card cap proposed.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">Army to blast chemicals</div></div><div class="dek">Court order overridden.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">AI bailout fight grows</div></div><div class="dek">Taxpayer rescue floated.</div></div>
+  </div>
+
+  <!-- ROW 7 : 8 panels -->
+  <div class="row row358">
+    <div class="panel"><div><div class="kicker">Sea</div><div class="hed">Russian ship burns</div></div><div class="dek">Sparta Two ablaze.</div></div>
+    <div class="panel"><div><div class="kicker">Germany</div><div class="hed">German kamikaze drone tests</div></div><div class="dek">AI targeting trialled.</div></div>
+    <div class="panel"><div><div class="kicker">UK</div><div class="hed">RAF's last crewed fighter?</div></div><div class="dek">Next jet in question.</div></div>
+    <div class="panel"><div><div class="kicker">Vatican</div><div class="hed">Pope: judgement is salvation</div></div><div class="dek">Angelus in Rome.</div></div>
+    <div class="panel"><div><div class="kicker">France</div><div class="hed">Jalibert starts for France</div></div><div class="dek">Argentina clash next.</div></div>
+    <div class="panel"><div><div class="kicker">India</div><div class="hed">Protest at Meta India</div></div><div class="dek">Accounts removed.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">Ohio baby shower shooting</div></div><div class="dek">3 killed, 1 injured.</div></div>
+    <div class="panel"><div><div class="kicker">Canada</div><div class="hed">Toronto Santa parade</div></div><div class="dek">World's longest-running.</div></div>
+  </div>
+
+  <!-- ROW 8 : 8 panels -->
+  <div class="row row358">
+    <div class="panel"><div><div class="kicker">Gaza</div><div class="hed">2 killed in Gaza</div></div><div class="dek">Israeli forces open fire.</div></div>
+    <div class="panel"><div><div class="kicker">US</div><div class="hed">Trump curbs Congress contact</div></div><div class="dek">Contractors must notify White House.</div></div>
+    <div class="panel"><div><div class="kicker">India</div><div class="hed">India-China hold border talks</div></div><div class="dek">Arunachal frontier discussed.</div></div>
+    <div class="panel"><div><div class="kicker">Iran</div><div class="hed">Hormuz reopening 'easy'</div></div><div class="dek">Araghchi sets US conditions.</div></div>
+    <div class="panel"><div><div class="kicker">Korea</div><div class="hed">S. Korea education chief quits</div></div><div class="dek">AI cheating scandal fallout.</div></div>
+    <div class="panel"><div><div class="kicker">Sport</div><div class="hed">India declare 720/9 v NZ</div></div><div class="dek">352-run lead in Wellington.</div></div>
+    <div class="panel"><div><div class="kicker">Guatemala</div><div class="hed">Guatemala arrests Mexican</div></div><div class="dek">US seeks extradition.</div></div>
+    <div class="panel"><div><div class="kicker">Brazil</div><div class="hed">Brazil town declares calamity</div></div><div class="dek">Tupanciretã seeks aid.</div></div>
+  </div>
+
+</div></div>
